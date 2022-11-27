@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import FormacaoAcademica from "../database/schemas/FormacaoAcademica";
+import Hobbie from "../database/schemas/Hobbie";
 
-class RegistroPessoalController {
+class HobbieController {
 
 
     async delete(request: Request, response: Response){
         try {
 
             const {id} = request.params;
-            const data = await FormacaoAcademica.findByIdAndDelete(id);
+            const data = await Hobbie.findByIdAndDelete(id);
 
         if(!data) {
 
@@ -27,9 +27,10 @@ class RegistroPessoalController {
     async update(request: Request, response: Response){
         try {
         const {id} = request.params;
-        await FormacaoAcademica.findByIdAndUpdate(id, request.body);
+        await Hobbie.findByIdAndUpdate(id, request.body);
 
         response.status(200).json ({message: "Success! Data updated!"});
+        
         }catch(error){
             return response.status(404).json({message: "ERROR: Update not working."});
 
@@ -41,7 +42,7 @@ class RegistroPessoalController {
 
         try {
 
-            const users = await FormacaoAcademica.find();
+            const users = await Hobbie.find();
             return response.json(users);
 
         } catch (error) {
@@ -61,7 +62,7 @@ class RegistroPessoalController {
 
     try {
 
-        const user = await FormacaoAcademica.create({
+        const user = await Hobbie.create({
             descricao,
             local,
             periodo,
@@ -77,4 +78,4 @@ class RegistroPessoalController {
     }
 }
 
-    export default new RegistroPessoalController();
+    export default new HobbieController();
