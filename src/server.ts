@@ -1,17 +1,21 @@
 import express from "express";
-import mongoose from "mongoose";
-import routes from "./routes";
 
-const app = express();
+const application = express();
 
-mongoose.connect("mongodb://localhost/api-rest");
+const port = 3000;
 
-app.use(express.json());
-app.use(routes);
+application
+  .get("/", (req, res) => {
+    res.send({
+      message: "Hello, World!",
+    });
+  })
+  .get("/random", (req, res) => {
+    res.send({
+      number: Math.floor(Math.random() * 100),
+    });
+  });
 
-
-app.listen(3000, () => {
-
-    console.log("Servidor rodando...");
-
+application.listen(port, () => {
+  console.log(`Application listening on port ${port}`);
 });
