@@ -4,8 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
-    "build": "echo 'Bulding.... (not actually doing something, but usually I would)'",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
   },
   "devDependencies": {
